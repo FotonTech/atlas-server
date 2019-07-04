@@ -1,7 +1,5 @@
 {
   "env": {
-    "MONGO_USER": "pauloabd",
-    "MONGO_PASSWORD": "5FpxM0H71t3VvFdv",
-    "MONGO_DB": "atlas"
+    "MONGO_URL": "mongodb://localhost:27017/atlas"
   }
 }
