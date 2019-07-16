@@ -4,10 +4,12 @@ module.exports = (req, res, next) => {
   const authHeader = req.get("Authorization");
   if (!authHeader) {
     req.isAuth = false;
+    console.log("No Authorization header");
     return next();
   }
-  const token = authHeader.split(" ");
-  if (!token || token === "") {
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    console.log("Invalid Authorization header");
     req.isAuth = false;
     return next();
   }
@@ -15,10 +17,12 @@ module.exports = (req, res, next) => {
   try {
     decodedToken = jwt.verify(token, "supersecretkey");
   } catch (err) {
+    console.log("Wrong Authorization header");
     req.isAuth = false;
     return next();
   }
   if (!decodedToken) {
+    console.log("Wrong2 Authorization header");
     req.isAuth = false;
     return next();
   }
